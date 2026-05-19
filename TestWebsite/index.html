@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+        <style>
+            body {
+                text-align: center;
+                background-color: rgb(230, 193, 125);
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            h1 {
+                color:rgb(22, 80, 89);
+                font-size: 70px
+            }
+            h3 {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 30px;
+                color:rgb(120, 89, 89);
+            }
+            button {
+                width: 135px;
+                height: 45px;
+                font-size: 25px;
+                margin: 10px;
+                font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+            img {
+                padding-right: 17px;
+                padding-left: 17px;
+            }
+            p {
+                color: black;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Rock Paper Scissors</h1>
+        <h3>Pick your choice:</h3>
+        <image src="rock.png" alt="Rock" width="120" height="120">
+        <image src="paper.png" alt="Paper" width="120" height="120">
+        <image src="scissors.png" alt="Scissors" width="120" height="120">
+        <p>
+            <button id="rock-button" onclick="shoot(0)">ROCK</button>
+            <button id="paper-button" onclick="shoot(1)">PAPER</button>
+            <button id="scissors-button" onclick="shoot(2)">SCISSORS</button>
+        </p>
+        <p id="choiceText"><br></p>
+        <p id="resultText"><br></p>
+        <h2 id="scoreboard">Wins: 0 Losses: 0</h2>
+    </body>
+    <script>
+        const choiceArray = ["rock", "paper", "scissors"];
+        let win = 0;
+        let lose = 0;
+        function shoot(choice) {
+            let compChoice = Math.floor(Math.random() * 3);
+            document.getElementById("choiceText").innerHTML = `You picked ${choiceArray[choice]} and the computer picked ${choiceArray[compChoice]}.`;
+            if (choice > compChoice || choice == 0 && compChoice == 2){
+                document.getElementById("resultText").innerHTML = "You won!";
+                win++;
+                document.getElementById("resultText").style.color = "green";
+            } else if (choice == compChoice) {
+                document.getElementById("resultText").innerHTML = "There was a tie.";
+                document.getElementById("resultText").style.color = "black";
+            } else {
+                document.getElementById("resultText").innerHTML = "You lost.";
+                lose++;
+                document.getElementById("resultText").style.color = "red";
+            }
+            document.getElementById("scoreboard").innerHTML = `Wins: ${win} Losses: ${lose}`;
+        }
+    </script>
+</html>
